@@ -41,10 +41,22 @@ public:
         return item->data(col, Qt::UserRole).value<GenericStruct<T>>().getObject();
     };
 
+    /**
+     * @brief creates the treewidget based on json file
+     * @param jsonDoc json document
+     */
+    void parseJsonToTree(QJsonDocument jsonDoc);
 
 private:
 
     QTreeWidget* mTreeWidget = nullptr; ///< treewidget class member
+
+    /**
+     * @brief recursively creates the tree based on json array members
+     * @param item parent item
+     * @param jsonArray array of children
+     */
+    void createJsonTreeItems(QTreeWidgetItem* item, QJsonArray jsonArray);
 
     /**
      * @brief creates a treewidgetitem with a custom struct inside its variant data

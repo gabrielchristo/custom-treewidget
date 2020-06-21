@@ -3,14 +3,13 @@ A qt single column treewidget example, with:
 
 - json serialization
 - custom data in each tree node (qvariant)
-- dynamic adding/removing nodes
+- dynamic adding and removing nodes
 - context menu
 - drag and drop
 - item name filter
 
-<img src="screenshot.png" width="1054" height="814">
+<img src="screenshot.png" width="899" height="1017">
 
-# Todo #
+# ToDo #
 - filter on child items
-- save and load json
-- drop signal to update json text
+- signal to update json text on dropped item

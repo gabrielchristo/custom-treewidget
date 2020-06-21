@@ -1,0 +1,42 @@
+[
+    {
+        "checked": true,
+        "children": [
+            {
+                "checked": false,
+                "children": [
+                    {
+                        "checked": true,
+                        "children": [
+                            {
+                                "checked": false,
+                                "children": [
+                                ],
+                                "name": "Top Level Item 3",
+                                "text": "drop item 3",
+                                "type": 1
+                            }
+                        ],
+                        "name": "Item 1 Child 1 Child 1",
+                        "text": "child 1 child 1",
+                        "type": 1
+                    }
+                ],
+                "name": "Item 1 Child 1",
+                "text": "child 1",
+                "type": 1
+            }
+        ],
+        "name": "Item 1",
+        "text": "top level 1",
+        "type": 2
+    },
+    {
+        "checked": false,
+        "children": [
+        ],
+        "name": "Item 2",
+        "text": "top level 2",
+        "type": 2
+    }
+]

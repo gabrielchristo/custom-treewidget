@@ -23,6 +23,31 @@ void TreeUtils::setTreeWidget(QTreeWidget *tree)
     }, Qt::UniqueConnection);
 }
 
+void TreeUtils::parseJsonToTree(QJsonDocument jsonDoc)
+{
+    this->mTreeWidget->clear();
+    this->mTreeWidget->blockSignals(true);
+    this->createJsonTreeItems(this->mTreeWidget->invisibleRootItem(), jsonDoc.array());
+    this->mTreeWidget->blockSignals(false);
+    this->updateTreeJson();
+}
+
+void TreeUtils::createJsonTreeItems(QTreeWidgetItem *item, QJsonArray jsonArray)
+{
+    std::for_each(jsonArray.begin(), jsonArray.end(), [this, item](QJsonValue value){
+        auto itemObject = value.toObject();
+        auto children = itemObject["children"].toArray();
+        auto newItem = this->createTreeItem<CustomStruct>(item);
+        newItem->setCheckState(0, itemObject["checked"].toBool() ? Qt::Checked : Qt::Unchecked);
+        newItem->setText(0, itemObject["name"].toString());
+        auto itemData = this->getTreeItemData<CustomStruct>(newItem, 0);
+        itemData->setText(itemObject["text"].toString());
+        itemData->setItemType(static_cast<CustomStruct::ItemType>(itemObject["type"].toInt()));
+        this->createJsonTreeItems(newItem, children);
+        item->addChild(newItem);
+    });
+}
+
 void TreeUtils::slotAddItemInTree()
 {
     if(this->hasSelectedItem()){
