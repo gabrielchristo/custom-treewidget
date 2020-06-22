@@ -124,7 +124,9 @@ void TreeUtils::slotClearSelection()
 void TreeUtils::slotApplyFilter(QString text)
 {
     auto items = this->mTreeWidget->findItems(text, Qt::MatchContains | Qt::MatchRecursive);
-    for(auto item : this->getChildren(mTreeWidget->invisibleRootItem())){
+    auto allItems = this->mTreeWidget->findItems("*", Qt::MatchRecursive | Qt::MatchWrap | Qt::MatchWildcard);
+
+    for(auto item : allItems){
         if(items.contains(item)) item->setHidden(false);
         else item->setHidden(true);
     }
